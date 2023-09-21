@@ -4,14 +4,17 @@ using UnityEngine;
 using Cinemachine;
 
 /*
-start 6
-pause 8
+start 6:00 PM
+pause 8:00 PM
 
-resume 8:50
-pause 10:30
+resume 8:50 PM
+pause 10:30 PM
 
-resume 11:00
-pause 
+resume 11:00 PM
+pause 00:00 PM
+
+resume 7:44 AM
+
 */
 public class JsonReader : MonoBehaviour
 {
@@ -192,6 +195,7 @@ public class JsonReader : MonoBehaviour
 
             newGameObject.GetComponent<BlockHandler>()._knowledgeBlock = newKnowledge;
             newGameObject.GetComponent<Rigidbody>().isKinematic = true;
+            newGameObject.transform.GetChild(0).gameObject.SetActive(false);
 
             counter++;
 
@@ -259,6 +263,7 @@ public class JsonReader : MonoBehaviour
 
             newGameObject.GetComponent<BlockHandler>()._knowledgeBlock = newKnowledge;
             newGameObject.GetComponent<Rigidbody>().isKinematic = true;
+            newGameObject.transform.GetChild(0).gameObject.SetActive(false);
 
             counter++;
 
@@ -326,6 +331,7 @@ public class JsonReader : MonoBehaviour
 
             newGameObject.GetComponent<BlockHandler>()._knowledgeBlock = newKnowledge;
             newGameObject.GetComponent<Rigidbody>().isKinematic = true;
+            newGameObject.transform.GetChild(0).gameObject.SetActive(false);
 
             counter++;
 

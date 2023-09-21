@@ -53,6 +53,24 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""22dbb744-a780-4a06-9ae2-5912566b1350"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""940a5a22-e2be-4e35-90aa-dfaf9499d360"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +106,28 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""action"": ""EnablePhysics"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28876d9c-64ba-487e-b9d1-a3daf0350e0d"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acaf27f8-7110-4f96-a46a-748821197f64"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -99,6 +139,8 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         m_Main_MoveToNext = m_Main.FindAction("MoveToNext", throwIfNotFound: true);
         m_Main_MoveToPrevious = m_Main.FindAction("MoveToPrevious", throwIfNotFound: true);
         m_Main_EnablePhysics = m_Main.FindAction("EnablePhysics", throwIfNotFound: true);
+        m_Main_Mouse = m_Main.FindAction("Mouse", throwIfNotFound: true);
+        m_Main_Select = m_Main.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,6 +205,8 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_MoveToNext;
     private readonly InputAction m_Main_MoveToPrevious;
     private readonly InputAction m_Main_EnablePhysics;
+    private readonly InputAction m_Main_Mouse;
+    private readonly InputAction m_Main_Select;
     public struct MainActions
     {
         private @InputManager m_Wrapper;
@@ -170,6 +214,8 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         public InputAction @MoveToNext => m_Wrapper.m_Main_MoveToNext;
         public InputAction @MoveToPrevious => m_Wrapper.m_Main_MoveToPrevious;
         public InputAction @EnablePhysics => m_Wrapper.m_Main_EnablePhysics;
+        public InputAction @Mouse => m_Wrapper.m_Main_Mouse;
+        public InputAction @Select => m_Wrapper.m_Main_Select;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -188,6 +234,12 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @EnablePhysics.started += instance.OnEnablePhysics;
             @EnablePhysics.performed += instance.OnEnablePhysics;
             @EnablePhysics.canceled += instance.OnEnablePhysics;
+            @Mouse.started += instance.OnMouse;
+            @Mouse.performed += instance.OnMouse;
+            @Mouse.canceled += instance.OnMouse;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -201,6 +253,12 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @EnablePhysics.started -= instance.OnEnablePhysics;
             @EnablePhysics.performed -= instance.OnEnablePhysics;
             @EnablePhysics.canceled -= instance.OnEnablePhysics;
+            @Mouse.started -= instance.OnMouse;
+            @Mouse.performed -= instance.OnMouse;
+            @Mouse.canceled -= instance.OnMouse;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -223,5 +281,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         void OnMoveToNext(InputAction.CallbackContext context);
         void OnMoveToPrevious(InputAction.CallbackContext context);
         void OnEnablePhysics(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

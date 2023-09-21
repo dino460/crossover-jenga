@@ -355,6 +355,7 @@
 -r:"Library/Bee/artifacts/2400b0aE.dag/com.unity.cinemachine.editor.ref.dll"
 -analyzer:"/home/rzcg/Unity/Hub/Editor/2022.3.7f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"/home/rzcg/Unity/Hub/Editor/2022.3.7f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/Scripts/BillboardText.cs"
 "Assets/Scripts/BlockHandler.cs"
 "Assets/Scripts/Input Manager/InputManager.cs"
 "Assets/Scripts/InputHandler.cs"
