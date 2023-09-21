@@ -3,19 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-/*
-start 6:00 PM
-pause 8:00 PM
 
-resume 8:50 PM
-pause 10:30 PM
-
-resume 11:00 PM
-pause 00:00 PM
-
-resume 7:44 AM
-
-*/
 public class JsonReader : MonoBehaviour
 {
     public TextAsset textJSON;
@@ -379,7 +367,6 @@ public class JsonReader : MonoBehaviour
                 {
                     if (blockToInsert.standardid.CompareTo(knowledgeBlockList[i].standardid) == 0)
                     {
-                        // TODO: Deal with overrides 
                         return;
                     }
                     else if (blockToInsert.standardid.CompareTo(knowledgeBlockList[i].standardid) < 0)
