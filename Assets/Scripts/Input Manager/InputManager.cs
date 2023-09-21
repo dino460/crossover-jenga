@@ -71,6 +71,15 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload Scene"",
+                    ""type"": ""Button"",
+                    ""id"": ""6283ff44-6113-478e-9dc5-3fc875ac0677"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,17 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c624462-3da3-4d47-a850-3b0a0a813730"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload Scene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +161,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         m_Main_EnablePhysics = m_Main.FindAction("EnablePhysics", throwIfNotFound: true);
         m_Main_Mouse = m_Main.FindAction("Mouse", throwIfNotFound: true);
         m_Main_Select = m_Main.FindAction("Select", throwIfNotFound: true);
+        m_Main_ReloadScene = m_Main.FindAction("Reload Scene", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_EnablePhysics;
     private readonly InputAction m_Main_Mouse;
     private readonly InputAction m_Main_Select;
+    private readonly InputAction m_Main_ReloadScene;
     public struct MainActions
     {
         private @InputManager m_Wrapper;
@@ -216,6 +238,7 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         public InputAction @EnablePhysics => m_Wrapper.m_Main_EnablePhysics;
         public InputAction @Mouse => m_Wrapper.m_Main_Mouse;
         public InputAction @Select => m_Wrapper.m_Main_Select;
+        public InputAction @ReloadScene => m_Wrapper.m_Main_ReloadScene;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -240,6 +263,9 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
+            @ReloadScene.started += instance.OnReloadScene;
+            @ReloadScene.performed += instance.OnReloadScene;
+            @ReloadScene.canceled += instance.OnReloadScene;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -259,6 +285,9 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
+            @ReloadScene.started -= instance.OnReloadScene;
+            @ReloadScene.performed -= instance.OnReloadScene;
+            @ReloadScene.canceled -= instance.OnReloadScene;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -283,5 +312,6 @@ public partial class @InputManager: IInputActionCollection2, IDisposable
         void OnEnablePhysics(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
+        void OnReloadScene(InputAction.CallbackContext context);
     }
 }

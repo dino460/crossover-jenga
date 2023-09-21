@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 using TMPro;
 
@@ -39,6 +40,7 @@ public class InputHandler : MonoBehaviour
         inputManager.Main.MoveToPrevious.performed += _0 => ChangeToPrevious();
         inputManager.Main.EnablePhysics.performed += _0 => EnablePhysics();
         inputManager.Main.Select.performed += _0 => Select();
+        inputManager.Main.ReloadScene.performed += _0 => ReloadScene();
     }
 
     private void Update()
@@ -111,5 +113,10 @@ public class InputHandler : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
